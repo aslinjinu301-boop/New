@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+        }
+
+        .container {
+            width: 430px;
+            max-width: 100%;
+            padding: 30px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 20px 50px #0004;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a8a;
+        }
+
+        .detail {
+            padding: 14px 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+            overflow-wrap: anywhere;
+        }
+
+        .detail strong {
+            color: #1e3a8a;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 22px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .created-by {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .created-by strong {
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Student Details</h1>
+
+    <div id="studentInfo"></div>
+
+    <button onclick="window.location.href='index.html'">
+        Back to Registration
+    </button>
+
+    <div class="created-by">
+        Created by<br>
+        <strong>Name: A. Aslin Jinu</strong><br>
+        Roll No: 902557<br>
+        Department: AI&amp;DS<br>
+        College ID: aslin.902557@sxcce.edu.in
+    </div>
+</div>
+
+<script>
+const info = document.getElementById("studentInfo");
+const saved = localStorage.getItem("studentDetails");
+
+if (saved) {
+    const student = JSON.parse(saved);
+
+    const fields = [
+        ["Student Name", student.name],
+        ["Register Number", student.regno],
+        ["Department", student.department],
+        ["Email", student.email],
+        ["Year", student.year]
+    ];
+
+    fields.forEach(function([label, value]) {
+        const row = document.createElement("div");
+        row.className = "detail";
+
+        const heading = document.createElement("strong");
+        heading.textContent = label + ": ";
+
+        row.appendChild(heading);
+        row.appendChild(document.createTextNode(value || ""));
+        info.appendChild(row);
+    });
+} else {
+    info.textContent =
+        "No student details found. Please submit the registration form first.";
+}
+</script>
+</body>
+</html>
