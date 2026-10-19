@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+            padding: 20px;
+        }
+
+        /* Mobile phone screen size */
+        .container {
+            width: 390px;
+            max-width: 390px;
+            min-height: 700px;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            background: white;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        }
+
+        #successMessage {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            color: #166534;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        #displayDetails {
+            margin-top: 10px;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .created-by {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .created-by strong {
+            color: #1e3a8a;
+            font-size: 14px;
+        }
+
+        /* Keep mobile screen size on smaller devices */
+        @media (max-width: 430px) {
+            body {
+                padding: 14px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 390px;
+                padding: 28px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Registration</h1>
+
+        <div class="subtitle">
+            Register your details below
+        </div>
+
+        <form id="registrationForm">
+
+            <!-- Student Name -->
+            <div class="form-group">
+                <label for="name">Student Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your full name"
+                >
+
+                <div class="error" id="nameError"></div>
+            </div>
+
+
+            <!-- Register Number -->
+            <div class="form-group">
+                <label for="regno">Register Number</label>
+
+                <input
+                    type="text"
+                    id="regno"
+                    placeholder="Enter register number"
+                >
+
+                <div class="error" id="regnoError"></div>
+            </div>
+
+
+            <!-- Department -->
+            <div class="form-group">
+                <label for="department">Department</label>
+
+                <select id="department">
+                    <option value="">Select Department</option>
+                    <option value="B.Tech IT">B.Tech IT</option>
+                    <option value="B.Tech CSE">B.Tech CSE</option>
+                    <option value="B.Tech AI & DS">B.Tech AI & DS</option>
+                    <option value="B.E ECE">B.E ECE</option>
+                    <option value="B.E EEE">B.E EEE</option>
+                </select>
+
+                <div class="error" id="departmentError"></div>
+            </div>
+
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="example@gmail.com"
+                >
+
+                <div class="error" id="emailError"></div>
+            </div>
+
+
+            <!-- Year -->
+            <div class="form-group">
+                <label for="year">Year</label>
+
+                <select id="year">
+                    <option value="">Select Year</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                </select>
+
+                <div class="error" id="yearError"></div>
+            </div>
+
+
+            <!-- Submit -->
+            <button type="submit">
+                Submit Registration
+            </button>
+
+        </form>
+
+
+        <!-- Success Message -->
+        <div id="successMessage">
+
+            <strong>✓ Successfully!!</strong>
+
+            <div id="displayDetails">
+                Student details submitted successfully.
+            </div>
+
+        </div>
+
+
+        <!-- Created By -->
+        <div class="created-by">
+
+            Created by<br>
+
+            <strong>@AslinJinu.A</strong><br>
+
+            Roll No: 902557
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        document
+            .getElementById("registrationForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                // Get values
+                const name =
+                    document.getElementById("name").value.trim();
+
+                const regno =
+                    document.getElementById("regno").value.trim();
+
+                const department =
+                    document.getElementById("department").value;
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+                const year =
+                    document.getElementById("year").value;
+
+
+                // Clear previous errors
+                document.getElementById("nameError").textContent = "";
+                document.getElementById("regnoError").textContent = "";
+                document.getElementById("departmentError").textContent = "";
+                document.getElementById("emailError").textContent = "";
+                document.getElementById("yearError").textContent = "";
+
+                let valid = true;
+
+
+                // Name validation
+                if (name === "") {
+
+                    document.getElementById("nameError").textContent =
+                        "Please enter your name.";
+
+                    valid = false;
+
+                } else if (!/^[A-Za-z ]+$/.test(name)) {
+
+                    document.getElementById("nameError").textContent =
+                        "Name should contain only letters.";
+
+                    valid = false;
+                }
+
+
+                // Register number validation
+                if (regno === "") {
+
+                    document.getElementById("regnoError").textContent =
+                        "Please enter register number.";
+
+                    valid = false;
+
+                } else if (!/^[0-9]+$/.test(regno)) {
+
+                    document.getElementById("regnoError").textContent =
+                        "Register number should contain only numbers.";
+
+                    valid = false;
+                }
+
+
+                // Department validation
+                if (department === "") {
+
+                    document.getElementById("departmentError").textContent =
+                        "Please select your department.";
+
+                    valid = false;
+                }
+
+
+                // Email validation
+                if (email === "") {
+
+                    document.getElementById("emailError").textContent =
+                        "Please enter your email.";
+
+                    valid = false;
+
+                } else if (
+                    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+                ) {
+
+                    document.getElementById("emailError").textContent =
+                        "Please enter a valid email.";
+
+                    valid = false;
+                }
+
+
+                // Year validation
+                if (year === "") {
+
+                    document.getElementById("yearError").textContent =
+                        "Please select your year.";
+
+                    valid = false;
+                }
+
+
+                // If everything is valid
+                if (valid) {
+
+                    document.getElementById("successMessage").style.display =
+                        "block";
+
+
+                    document.getElementById("displayDetails").innerHTML =
+
+                        "Student Name: " + name +
+                        "<br>Register Number: " + regno +
+                        "<br>Department: " + department +
+                        "<br>Email: " + email +
+                        "<br>Year: " + year;
+                }
+
+            });
+
+    </script>
+
+</body>
+</html>
